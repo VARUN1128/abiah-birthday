@@ -73,7 +73,10 @@ export default function MusicPlayer() {
   return (
     <div
       className="fixed z-50 flex flex-col items-center gap-2"
-      style={{ bottom: "1.5rem", right: "1.5rem" }}
+      style={{
+        bottom: "max(1.5rem, calc(1rem + env(safe-area-inset-bottom, 0px)))",
+        right: "max(1.5rem, calc(1rem + env(safe-area-inset-right, 0px)))",
+      }}
     >
       {/* Mute toggle */}
       <AnimatePresence>

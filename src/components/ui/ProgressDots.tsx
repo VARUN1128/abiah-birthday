@@ -21,8 +21,11 @@ interface Props {
 export default function ProgressDots({ current, onNavigate }: Props) {
   return (
     <nav
-      className="fixed bottom-6 left-1/2 z-50"
-      style={{ transform: "translateX(-50%)" }}
+      className="fixed left-1/2 z-50"
+      style={{
+        transform: "translateX(-50%)",
+        bottom: "max(1.25rem, calc(0.75rem + env(safe-area-inset-bottom, 0px)))",
+      }}
       aria-label="Progress navigation"
     >
       <div

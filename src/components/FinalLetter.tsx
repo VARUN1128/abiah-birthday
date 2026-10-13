@@ -101,9 +101,9 @@ export default function FinalLetter({ onNext }: Props) {
             background: "#FFFDF8",
             border: "1px solid rgba(236,166,186,0.35)",
             borderRadius: "2px",
-            padding: "clamp(1.5rem, 4vw, 3rem)",
+            padding: "clamp(1rem, 5vw, 3rem)",
             boxShadow: "0 8px 40px rgba(76,40,52,0.1), 4px 4px 0 rgba(236,166,186,0.2)",
-            minHeight: "420px",
+            minHeight: "380px",
             transform: "rotate(-0.5deg)",
           }}
         >
@@ -117,9 +117,9 @@ export default function FinalLetter({ onNext }: Props) {
             }}
           />
 
-          {/* Red margin line */}
+          {/* Red margin line — only on wider screens */}
           <div
-            className="absolute top-0 bottom-0 pointer-events-none"
+            className="absolute top-0 bottom-0 pointer-events-none hidden sm:block"
             style={{ left: "52px", width: "1px", background: "rgba(185,46,69,0.2)" }}
           />
 
@@ -136,7 +136,7 @@ export default function FinalLetter({ onNext }: Props) {
           />
 
           {/* Letter content */}
-          <div className="relative" style={{ paddingLeft: "24px" }}>
+          <div className="relative sm:pl-6">
             {/* Already-typed paragraphs */}
             {displayed.map((para, i) => {
               const isSignature = i === paragraphs.length - 1;

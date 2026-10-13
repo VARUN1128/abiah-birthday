@@ -16,6 +16,10 @@
   --font-display: "Cormorant Garamond", Georgia, serif;
   --font-body: "DM Sans", system-ui, sans-serif;
   --font-hand: "Dancing Script", cursive;
+
+  /* Safe area insets for mobile notches */
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-top:    env(safe-area-inset-top, 0px);
 }
 
 @theme inline {
@@ -32,6 +36,8 @@
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
+  /* Prevent double-tap zoom on mobile */
+  touch-action: manipulation;
 }
 
 body {
@@ -42,6 +48,19 @@ body {
   font-family: var(--font-body);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  /* Prevent callout on long-press (mobile) */
+  -webkit-touch-callout: none;
+}
+
+/* Remove tap highlight on mobile */
+a, button, [role="button"] {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Minimum touch target size for accessibility */
+button, [role="button"] {
+  min-height: 44px;
+  min-width: 44px;
 }
 
 /* ── Typography ──────────────────────────────────────────── */
@@ -73,10 +92,17 @@ body {
   transition: transform 0.3s cubic-bezier(.34,1.56,.64,1), box-shadow 0.3s ease;
   will-change: transform;
 }
-.polaroid:hover {
-  transform: scale(1.04) rotate(0deg) !important;
-  box-shadow: 0 12px 40px rgba(76, 40, 52, 0.18);
-  z-index: 10;
+/* Only apply hover effects on non-touch devices */
+@media (hover: hover) {
+  .polaroid:hover {
+    transform: scale(1.04) rotate(0deg) !important;
+    box-shadow: 0 12px 40px rgba(76, 40, 52, 0.18);
+    z-index: 10;
+  }
+}
+/* Touch: add active state instead */
+.polaroid:active {
+  transform: scale(0.97) !important;
 }
 
 /* ── Washi tape ──────────────────────────────────────────── */
@@ -114,8 +140,10 @@ body {
   border: 1px solid rgba(236, 166, 186, 0.3);
   border-radius: 4px 4px 4px 20px;
   box-shadow: 2px 4px 12px rgba(76,40,52,0.1);
-  padding: 1.5rem 1.75rem;
+  padding: 1.25rem 1.5rem;
   position: relative;
+  width: 100%;
+  max-width: 380px;
 }
 .wish-note::before {
   content: "";
@@ -150,10 +178,12 @@ body {
   inset: 0;
   overflow-y: auto;
   overflow-x: hidden;
+  /* Enable momentum scrolling on iOS */
+  -webkit-overflow-scrolling: touch;
 }
 
 /* ── Scrollbar ───────────────────────────────────────────── */
-::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: var(--blush); }
 ::-webkit-scrollbar-thumb { background: var(--rose); border-radius: 3px; }
 
@@ -202,3 +232,18 @@ body {
   50%     { transform: scale(1.06); }
 }
 .surprise-hint { animation: subtle-pulse 3s ease-in-out infinite; }
+
+/* ── Mobile utility classes ──────────────────────────────── */
+/* Safe area padding for fixed elements */
+.safe-bottom {
+  padding-bottom: max(1.5rem, calc(1rem + var(--safe-bottom)));
+}
+
+/* Touch-friendly buttons */
+.btn-touch {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  min-width: 48px;
+}
