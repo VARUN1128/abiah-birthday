@@ -1,26 +1,204 @@
 @import "tailwindcss";
 
+/* ============================================================
+   ABIAH'S LITTLE WORLD — Global Styles
+   ============================================================ */
+
+/* Google Fonts are loaded via layout.tsx next/font */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --cream: #FFF8F0;
+  --blush: #F7DDE5;
+  --rose:  #ECA6BA;
+  --cherry: #B92E45;
+  --berry: #4C2834;
+
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-body: "DM Sans", system-ui, sans-serif;
+  --font-hand: "Dancing Script", cursive;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-cream: var(--cream);
+  --color-blush: var(--blush);
+  --color-rose: var(--rose);
+  --color-cherry: var(--cherry);
+  --color-berry: var(--berry);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ── Reset & Base ────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: var(--cream);
+  color: var(--berry);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
+
+/* ── Typography ──────────────────────────────────────────── */
+.font-display { font-family: var(--font-display); }
+.font-hand    { font-family: var(--font-hand); }
+.font-body    { font-family: var(--font-body); }
+
+/* ── Paper grain texture ─────────────────────────────────── */
+.paper-texture {
+  position: relative;
+}
+.paper-texture::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  opacity: 0.5;
+  mix-blend-mode: multiply;
+}
+
+/* ── Polaroid ────────────────────────────────────────────── */
+.polaroid {
+  background: #fff;
+  padding: 10px 10px 36px 10px;
+  box-shadow: 0 4px 24px rgba(76, 40, 52, 0.12), 0 1px 4px rgba(76, 40, 52, 0.08);
+  border-radius: 2px;
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(.34,1.56,.64,1), box-shadow 0.3s ease;
+  will-change: transform;
+}
+.polaroid:hover {
+  transform: scale(1.04) rotate(0deg) !important;
+  box-shadow: 0 12px 40px rgba(76, 40, 52, 0.18);
+  z-index: 10;
+}
+
+/* ── Washi tape ──────────────────────────────────────────── */
+.washi {
+  position: absolute;
+  height: 20px;
+  border-radius: 2px;
+  opacity: 0.82;
+}
+
+/* ── Torn paper edge ─────────────────────────────────────── */
+.torn-bottom {
+  position: relative;
+}
+.torn-bottom::after {
+  content: "";
+  position: absolute;
+  bottom: -12px;
+  left: 0;
+  right: 0;
+  height: 24px;
+  background: var(--cream);
+  clip-path: polygon(0% 50%, 3% 0%, 6% 60%, 9% 10%, 12% 55%, 15% 5%, 18% 65%, 21% 15%, 24% 60%, 27% 5%, 30% 55%, 33% 10%, 36% 60%, 39% 0%, 42% 55%, 45% 15%, 48% 60%, 51% 5%, 54% 55%, 57% 10%, 60% 65%, 63% 15%, 66% 55%, 69% 0%, 72% 60%, 75% 10%, 78% 55%, 81% 5%, 84% 65%, 87% 15%, 90% 55%, 93% 0%, 96% 60%, 100% 40%, 100% 100%, 0% 100%);
+}
+
+/* ── Envelope ────────────────────────────────────────────── */
+.envelope-flap {
+  transform-origin: top center;
+  transform-style: preserve-3d;
+}
+
+/* ── Wish note ───────────────────────────────────────────── */
+.wish-note {
+  background: linear-gradient(135deg, #fff 0%, #FFF8F0 100%);
+  border: 1px solid rgba(236, 166, 186, 0.3);
+  border-radius: 4px 4px 4px 20px;
+  box-shadow: 2px 4px 12px rgba(76,40,52,0.1);
+  padding: 1.5rem 1.75rem;
+  position: relative;
+}
+.wish-note::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--rose), var(--cherry));
+  border-radius: 4px 4px 0 0;
+}
+
+/* ── Candle flame animation ──────────────────────────────── */
+@keyframes flicker {
+  0%,100% { transform: scaleY(1) scaleX(1) translateY(0); opacity: 1; }
+  25%      { transform: scaleY(1.05) scaleX(0.95) translateY(-1px); opacity: 0.92; }
+  50%      { transform: scaleY(0.95) scaleX(1.05) translateY(1px); opacity: 0.97; }
+  75%      { transform: scaleY(1.08) scaleX(0.92) translateY(-2px); opacity: 0.88; }
+}
+.flame { animation: flicker 1.4s ease-in-out infinite; }
+
+/* ── Float animation ─────────────────────────────────────── */
+@keyframes float-gentle {
+  0%,100% { transform: translateY(0px) rotate(var(--rot, 0deg)); }
+  50%     { transform: translateY(-8px) rotate(var(--rot, 0deg)); }
+}
+.float { animation: float-gentle 4s ease-in-out infinite; }
+
+/* ── Screen transitions ──────────────────────────────────── */
+.screen-wrap {
+  position: fixed;
+  inset: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* ── Scrollbar ───────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--blush); }
+::-webkit-scrollbar-thumb { background: var(--rose); border-radius: 3px; }
+
+/* ── Gingham accent ──────────────────────────────────────── */
+.gingham {
+  background-image:
+    linear-gradient(rgba(247, 221, 229, 0.5) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(247, 221, 229, 0.5) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* ── Accessible focus ────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--cherry);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ── Reduced motion ──────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ── Typewriter cursor ───────────────────────────────────── */
+@keyframes blink {
+  0%,100% { opacity: 1; }
+  50%     { opacity: 0; }
+}
+.typewriter-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1.1em;
+  background: var(--cherry);
+  vertical-align: text-bottom;
+  margin-left: 2px;
+  animation: blink 1s step-end infinite;
+}
+
+/* ── Hidden surprise pulse ───────────────────────────────── */
+@keyframes subtle-pulse {
+  0%,100% { transform: scale(1); }
+  50%     { transform: scale(1.06); }
+}
+.surprise-hint { animation: subtle-pulse 3s ease-in-out infinite; }
