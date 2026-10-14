@@ -103,7 +103,7 @@ export default function BirthdayCake({ onNext }: Props) {
             className="uppercase tracking-widest text-xs mb-3"
             style={{ color: "var(--cherry)", fontFamily: "var(--font-dm-sans)", letterSpacing: "0.3em" }}
           >
-            ✦ Screen VI ✦
+            ✦ Screen V ✦
           </p>
           <h2
             style={{
@@ -328,9 +328,9 @@ export default function BirthdayCake({ onNext }: Props) {
             letterSpacing: "0.1em",
             boxShadow: "0 4px 20px rgba(185,46,69,0.28)",
           }}
-          aria-label="Read the birthday letter"
+          aria-label="Continue to the ending"
         >
-          Read your letter →
+          Continue →
         </motion.button>
       </div>
     </div>

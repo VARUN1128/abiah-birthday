@@ -219,8 +219,8 @@ export default function IntroScreen({ onNext }: Props) {
           className="max-w-sm text-center leading-relaxed mb-8 sm:mb-10 px-4"
           style={{ fontFamily: "var(--font-dm-sans)", color: "var(--berry)", opacity: 0.85, fontSize: "clamp(0.9rem, 3vw, 1.05rem)" }}
         >
-          I made you a little world — full of memories, wishes, hidden messages
-          and all the things I&apos;d want you to know on your birthday.
+          Your friend Shalom made you a little world — full of memories,
+          inside jokes, birthday wishes, and all the things a good friend should say.
         </motion.p>
 
         {/* Next button */}
@@ -240,9 +240,9 @@ export default function IntroScreen({ onNext }: Props) {
           }}
           whileHover={{ scale: 1.04, boxShadow: "0 6px 28px rgba(185,46,69,0.38)" }}
           whileTap={{ scale: 0.97 }}
-          aria-label="Continue to Memory Museum"
+          aria-label="Continue"
         >
-          Explore your little world →
+          Let's go →
         </motion.button>
       </section>
 

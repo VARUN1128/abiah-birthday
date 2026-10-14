@@ -92,7 +92,7 @@ export default function EndingScreen({ onReplay }: Props) {
             lineHeight: 1.05,
           }}
         >
-          for Abiah ♡
+          Happy Birthday, Abiah! 🎂
         </motion.h2>
 
         {/* Handwritten note */}
@@ -108,7 +108,7 @@ export default function EndingScreen({ onReplay }: Props) {
             transform: "rotate(-2deg)",
           }}
         >
-          happy birthday, you wonderful person
+          glad to be your friend 🎀
         </motion.p>
 
         {/* Small paragraph */}
@@ -119,7 +119,7 @@ export default function EndingScreen({ onReplay }: Props) {
           className="mt-6 leading-relaxed max-w-sm"
           style={{ fontFamily: "var(--font-dm-sans)", color: "var(--berry)", opacity: 0.8, fontSize: "0.95rem" }}
         >
-          I hope this little world made you smile. You deserve every beautiful thing this year has to offer. Here&apos;s to you. ✨
+          I hope this little world made you smile. From one friend to another — you're brilliant, and I hope this year treats you exactly as well as you deserve. ✨
         </motion.p>
 
         {/* Big bow */}

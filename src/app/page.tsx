@@ -5,16 +5,14 @@ import { AnimatePresence, motion } from "framer-motion";
 
 import EnvelopeScreen  from "@/components/EnvelopeScreen";
 import IntroScreen     from "@/components/IntroScreen";
-import MemoryMuseum    from "@/components/MemoryMuseum";
 import WishJar         from "@/components/WishJar";
-import HiddenSurprises from "@/components/HiddenSurprises";
 import BirthdayCake    from "@/components/BirthdayCake";
-import FinalLetter     from "@/components/FinalLetter";
 import EndingScreen    from "@/components/EndingScreen";
 import ProgressDots    from "@/components/ui/ProgressDots";
 import MusicPlayer     from "@/components/MusicPlayer";
 
-type ScreenId = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7;
+// 5 screens: 0=Envelope 1=Intro 2=WishJar 3=Cake 4=Ending
+type ScreenId = 0 | 1 | 2 | 3 | 4;
 
 const pageVariants = {
   initial: { opacity: 0, y: 24 },
@@ -46,38 +44,23 @@ export default function Home() {
           </motion.div>
         )}
         {screen === 2 && (
-          <motion.div key="memories" {...pageVariants}>
-            <MemoryMuseum onNext={() => next(2)} />
+          <motion.div key="wishjar" {...pageVariants}>
+            <WishJar onNext={() => next(2)} />
           </motion.div>
         )}
         {screen === 3 && (
-          <motion.div key="wishjar" {...pageVariants}>
-            <WishJar onNext={() => next(3)} />
+          <motion.div key="cake" {...pageVariants}>
+            <BirthdayCake onNext={() => next(3)} />
           </motion.div>
         )}
         {screen === 4 && (
-          <motion.div key="surprises" {...pageVariants}>
-            <HiddenSurprises onNext={() => next(4)} />
-          </motion.div>
-        )}
-        {screen === 5 && (
-          <motion.div key="cake" {...pageVariants}>
-            <BirthdayCake onNext={() => next(5)} />
-          </motion.div>
-        )}
-        {screen === 6 && (
-          <motion.div key="letter" {...pageVariants}>
-            <FinalLetter onNext={() => next(6)} />
-          </motion.div>
-        )}
-        {screen === 7 && (
           <motion.div key="ending" {...pageVariants}>
             <EndingScreen onReplay={() => goTo(0)} />
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* Progress navigation — hidden on envelope screen */}
+      {/* Progress navigation — hidden on envelope screen & on mobile */}
       {screen > 0 && (
         <ProgressDots current={screen} onNavigate={goTo} />
       )}

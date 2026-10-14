@@ -5,11 +5,8 @@ import { motion } from "framer-motion";
 const SCREENS = [
   { label: "Invitation" },
   { label: "Introduction" },
-  { label: "Memories" },
   { label: "Wishes" },
-  { label: "Surprises" },
   { label: "Cake" },
-  { label: "Letter" },
   { label: "Ending" },
 ];
 

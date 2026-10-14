@@ -58,7 +58,7 @@ export default function EnvelopeScreen({ onOpen }: Props) {
         className="mb-10 text-sm tracking-widest uppercase"
         style={{ fontFamily: "var(--font-dm-sans)", color: "var(--rose)", letterSpacing: "0.2em" }}
       >
-        Psst… Abiah, this is for you ♡
+        Psst… Abiah, this one's from a friend 🎀
       </motion.p>
 
       {/* Envelope SVG */}
@@ -203,7 +203,7 @@ export default function EnvelopeScreen({ onOpen }: Props) {
         className="mt-3 text-center text-sm"
         style={{ color: "var(--rose)", fontFamily: "var(--font-dancing)", fontSize: "1.25rem" }}
       >
-        A birthday gift made with love ✨
+        A birthday surprise from your friend Shalom ✨
       </motion.p>
     </div>
   );
